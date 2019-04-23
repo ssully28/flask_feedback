@@ -27,7 +27,7 @@ class User(db.Model):
     last_name = db.Column(db.String(30),
                           nullable=False)
 
-    feedback = db.relationship('Feedback', backref="feedback")
+    feedback = db.relationship('Feedback', backref="feedback", cascade="all, delete, delete-orphan")
 
     @classmethod
     def register(cls, username, pwd, email, first_name, last_name):
