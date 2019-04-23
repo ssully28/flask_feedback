@@ -9,6 +9,25 @@
     <p>Email: {{ user.email }}</p>
     <p>First Name: {{ user.first_name }}</p>
     <p>Last Name: {{ user.last_name }}</p>
-    
+
+    <ul>
+        {% for feedback in user.feedback %}
+        <form action="/feedback/{{feedback.id}}/update" method="GET">
+            <li>{{feedback.title}} - {{feedback.content}}</li>
+            <button type="submit">Edit</button>
+        </form>
+        <form action="/feedback/{{feedback.id}}/delete" method="POST">
+            <button type="submit">Delete</button>
+        </form>
+
+        {% endfor %}
+    </ul>
+
+    <form action="/users/{{user.username}}/feedback/add" method="GET">
+        <button type="submit">Add Feedback</button>
+    </form>
+    <form action="/users/{{user.username}}/delete" method="POST">
+        <button type="submit">Delete User</button>
+    </form>
 
 {% endblock %}
